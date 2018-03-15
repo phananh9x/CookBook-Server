@@ -8,9 +8,11 @@ var mongoose    = require('mongoose');
 var jwt    = require('jsonwebtoken'); 
 var config = require('./config'); 
 var User   = require('./models/userModel'); 
+var Category   = require('./models/categoryModel'); 
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var category = require('./routes/category');
 
 var app = express();
 
@@ -28,8 +30,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
-  if (req.headers && req.headers.token && req.headers.token.split(' ')[0] === 'JWT') {
-    jsonwebtoken.verify(req.headers.token.split(' ')[1], config.secret, function(err, decode) {
+  if (req.headers && req.headers.token) {
+    jwt.verify(req.headers.token, config.secret, function(err, decode) {
       if (err) req.user = undefined;
       req.user = decode;
       next();
@@ -42,6 +44,7 @@ app.use(function(req, res, next) {
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/category', category);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
