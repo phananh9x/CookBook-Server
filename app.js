@@ -9,10 +9,12 @@ var jwt    = require('jsonwebtoken');
 var config = require('./config'); 
 var User   = require('./models/userModel'); 
 var Category   = require('./models/categoryModel'); 
+var Food   = require('./models/foodModel'); 
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 var category = require('./routes/category');
+var food = require('./routes/foods');
 
 var app = express();
 
@@ -45,6 +47,7 @@ app.use(function(req, res, next) {
 app.use('/', index);
 app.use('/users', users);
 app.use('/category', category);
+app.use('/food', food);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
