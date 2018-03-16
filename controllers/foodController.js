@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
   	Food = mongoose.model('Food');
 
 exports.get = function(req, res) {
-  Food.find({ companyId : req.params.companyId }, function(err, data) {
+  Food.find({ categoryId : req.params.categoryId }, function(err, data) {
     if (err) throw err;
     return res.json(data);
   });
