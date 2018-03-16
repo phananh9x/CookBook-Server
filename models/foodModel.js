@@ -20,6 +20,9 @@ var FoodSchema = new Schema({
   decriptions : {
   	type : String
   },
+  youtube: {
+    type : String
+  },
   material: {
   	type : String
   },
@@ -31,7 +34,6 @@ var FoodSchema = new Schema({
   		}]
   	}]
   },
-
   favourite: {
   	type : Number,
   	default: 0

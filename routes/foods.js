@@ -1,12 +1,11 @@
 var express = require('express');
 var router = express.Router();
-
+var	userHandlers = require('../controllers/userController.js');
+var	foodHandlers = require('../controllers/foodController.js');
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.locals.connection.query('SELECT * food', function (error, results, fields) {
-		if (error) throw error;
-		res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
-	});
-});
+router.get('/:companyId',userHandlers.loginRequired, foodHandlers.get);
+router.post('/:companyId/create',userHandlers.loginRequired, foodHandlers.create);
+router.put('/:companyId/update/:foodId',userHandlers.loginRequired, foodHandlers.update);
+router.delete('/:companyId/delete/:foodId',userHandlers.loginRequired, foodHandlers.delete);
 
 module.exports = router;
