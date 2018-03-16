@@ -10,13 +10,13 @@ exports.get = function(req, res) {
 
 exports.create = function(req, res) {
   var newFood = new Food(req.body);
-  newFood.save(function(err, category) {
+  newFood.save(function(err, food) {
     if (err) {
       return res.status(400).send({
         message: err
       });
     } else {
-      return res.json(category);
+      return res.json(food);
     }
   });
 };
@@ -41,6 +41,27 @@ exports.detele = function(req, res) {
       });
     } else {
       return res.json("delete successful!");
+    }
+  });
+};
+
+//food Detail
+exports.getDetail = function(req, res) {
+  Food.find({ foodId : req.params.foodId }, function(err, data) {
+    if (err) throw err;
+    return res.json(data);
+  });
+};
+
+// updateFavourite
+exports.updateFavourite = function(req, res) {
+  Food.findOneAndUpdate({_id : req.param.foodId}, req.body, function (err, data) {
+    if (err) {
+      return res.status(400).send({
+        message: err
+      });
+    } else {
+      return res.json(data);
     }
   });
 };
