@@ -9,6 +9,6 @@ router.post('/:categoryId/create',userHandlers.loginRequired, foodHandlers.creat
 // router.post('/:categoryId/delete/:foodId',userHandlers.loginRequired, foodHandlers.delete);
 
 router.get('/:foodId',userHandlers.loginRequired, foodHandlers.getDetail);
-router.post('/:categoryId/updateFavourite',userHandlers.loginRequired, foodHandlers.updateFavourite);
+router.post('/:foodId/updateFavourite',userHandlers.loginRequired, foodHandlers.updateFavourite);
 
 module.exports = router;
