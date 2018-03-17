@@ -47,7 +47,7 @@ exports.detele = function(req, res) {
 
 //food Detail
 exports.getDetail = function(req, res) {
-  Food.find({ foodId : req.params.foodId }, function(err, data) {
+  Food.find({ _id : req.params.foodId }, function(err, data) {
     if (err) throw err;
     return res.json(data);
   });
