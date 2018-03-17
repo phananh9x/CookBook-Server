@@ -22,7 +22,7 @@ exports.create = function(req, res) {
 };
 
 exports.update = function(req, res) {
-  Food.findOneAndUpdate({_id : req.param.foodId}, req.body, function (err, data) {
+  Food.findOneAndUpdate({_id : req.params.foodId}, req.body, function (err, data) {
     if (err) {
       return res.status(400).send({
         message: err
@@ -34,7 +34,7 @@ exports.update = function(req, res) {
 };
 
 exports.detele = function(req, res) {
-  Food.findOneAndDelete({_id : req.param.foodId}, function (err, data) {
+  Food.findOneAndDelete({_id : req.params.foodId}, function (err, data) {
     if (err) {
       return res.status(400).send({
         message: err
@@ -47,7 +47,7 @@ exports.detele = function(req, res) {
 
 //food Detail
 exports.getDetail = function(req, res) {
-  Food.find({ _id : req.params.foodId }, function(err, data) {
+  Food.findOne({ _id : req.params.foodId }, function(err, data) {
     if (err) throw err;
     return res.json(data);
   });
@@ -55,7 +55,7 @@ exports.getDetail = function(req, res) {
 
 // updateFavourite
 exports.updateFavourite = function(req, res) {
-  Food.findOneAndUpdate({_id : req.param.foodId}, req.body, function (err, data) {
+  Food.findOneAndUpdate({_id : req.params.foodId}, req.body, function (err, data) {
     if (err) {
       return res.status(400).send({
         message: err
