@@ -29,14 +29,20 @@ var FoodSchema = new Schema({
       amount : String,
     }]
   },
-  content: {
-  	[{
-  		step : String,
-  		[{
-  			image : String
-  		}]
-  	}]
-  },
+  content: 
+  	{
+      type : Array,
+      step : {
+        type : String
+      },
+      arrImage : {
+        type : Array,
+        image : {
+          type : String
+        }
+      }
+  	}
+  ,
   favourite: {
   	type : Number,
   	default: 0
