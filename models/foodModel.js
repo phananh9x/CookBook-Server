@@ -24,10 +24,13 @@ var FoodSchema = new Schema({
     type : String
   },
   materials: {
-    [{
-      material : String,
-      amount : String,
-    }]
+      type : Array,
+      material : {
+        type : String
+      },
+      amount : {
+        type : String
+      }
   },
   content: 
   	{
