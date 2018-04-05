@@ -23,6 +23,9 @@ var FoodSchema = new Schema({
   youtube: {
     type : String
   },
+  time: {
+    type : String
+  },
   materials: {
       type : Array,
       material : {
