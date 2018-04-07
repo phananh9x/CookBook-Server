@@ -7,7 +7,6 @@ var mongoose = require('mongoose'),
  * Image Schema
  */
 var ImageSchema = new Schema({
-
   fieldname: {
     type: String,
   },

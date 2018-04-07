@@ -1,9 +1,8 @@
 var mongoose = require('mongoose'),
-  	Image = mongoose.model('Image'),
-  	fs = require('fs');
+  	Image = mongoose.model('Image');
 
 exports.get = function(req, res, next) {
-  	Image.findById(req.imageId, function (err, result) {
+  	Image.find({_id : req.imageId}, function (err, result) {
 	  if (err) return next(err);
 	  res.json(result);
 	});
