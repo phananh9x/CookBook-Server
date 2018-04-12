@@ -5,11 +5,11 @@ exports.get = function(req, res) {
   Food.find({ categoryId : req.params.categoryId }, function(err, data) {
     if (err) 
       return res.status(400).send({
-        statusCode: 400, 
-        result: null,
+        success: false, 
+        results: null,
         message: err
       });
-    return res.send({statusCode: 200, result: data});
+    return res.send({success: true, results: data});
   });
 };
 
@@ -18,11 +18,11 @@ exports.create = function(req, res) {
   newFood.save(function(err, food) {
     if (err)
      return res.status(400).send({
-        statusCode: 400, 
-        result: null,
+        success: false, 
+        results: null,
         message: err
       });
-    return res.send({statusCode: 200, result: food});
+    return res.send({success: true, results: food});
   });
 };
 
@@ -30,11 +30,11 @@ exports.update = function(req, res) {
   Food.findOneAndUpdate({_id : req.params.foodId}, req.body, function (err, data) {
     if (err) 
       return res.status(400).send({
-        statusCode: 400, 
-        result: null,
+        success: false, 
+        results: null,
         message: err
       });
-    return res.send({statusCode: 200, result: data});
+    return res.send({success: true, results: data});
   });
 };
 
@@ -42,11 +42,11 @@ exports.detele = function(req, res) {
   Food.findOneAndDelete({_id : req.params.foodId}, function (err, data) {
     if (err) 
       return res.status(400).send({
-        statusCode: 400, 
-        result: null,
+        success: false, 
+        results: null,
         message: err
       });
-    return res.send({statusCode: 200, result: data});
+    return res.send({success: true, results: data});
   });
 };
 
@@ -55,11 +55,11 @@ exports.getDetail = function(req, res) {
   Food.findOne({ _id : req.params.foodId }, function(err, data) {
     if (err) 
       return res.status(400).send({
-        statusCode: 400, 
-        result: null,
+        success: false, 
+        results: null,
         message: err
       });
-    return res.send({statusCode: 200, result: data});
+    return res.send({success: true, results: data});
   });
 };
 
@@ -68,10 +68,10 @@ exports.updateFavourite = function(req, res) {
   Food.findOneAndUpdate({_id : req.params.foodId}, req.body, function (err, data) {
     if (err) 
       return res.status(400).send({
-        statusCode: 400, 
-        result: null,
+        success: false, 
+        results: null,
         message: err
       });
-    return res.send({statusCode: 200, result: data});
+    return res.send({success: true, results: data});
   });
 };

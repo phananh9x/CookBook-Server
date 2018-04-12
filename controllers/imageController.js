@@ -5,11 +5,11 @@ exports.get = function(req, res, next) {
   	Image.findById(req.params.imageId, function (err, data) {
 	  if (err) 
 		return res.status(400).send({
-			statusCode: 400, 
-			result: null,
+			success: false, 
+			results: null,
 			message: err
 		});
-	  return res.send({statusCode: 200, result: data});
+	  return res.send({success: true, results: data});
 	});
 };
 
@@ -19,10 +19,10 @@ exports.create = function(req, res, next) {
 	img.save(function(err, data) {
     if (err) 
     	return res.status(400).send({
-			statusCode: 400, 
-			result: null,
+			success: false, 
+			results: null,
 			message: err
 		});
-    return res.send({statusCode: 200, result: data});
+    return res.send({success: true, results: data});
   });
 };

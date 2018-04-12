@@ -1,4 +1,3 @@
-
 var mongoose = require('mongoose'),
 	config = require('../config'),
   	jwt = require('jsonwebtoken'),
@@ -11,12 +10,12 @@ exports.register = function(req, res) {
   newUser.save(function(err, user) {
     if (err) 
       return res.status(400).send({
-        statusCode: 400, 
-        result: null,
+        success: false, 
+        results: null,
         message: err
       });
     user.hash_password = undefined;
-    return res.send({statusCode: 200, result: user});
+    return res.send({success: true, results: user});
   });
 };
 
@@ -26,18 +25,18 @@ exports.sign_in = function(req, res) {
   }, function(err, user) {
     if (err) 
       return res.status(400).send({
-        statusCode: 400, 
-        result: null,
+        success: false, 
+        results: null,
         message: err
       });
     if (!user || !user.comparePassword(req.body.password)) {
       return res.status(401).send({
-        statusCode: 401, 
-        result: null,
+        success: false, 
+        results: null,
         message: 'Authentication failed. Invalid user or password.'
       });
     }
-    return res.send({statusCode: 200, result: { 
+    return res.send({success: true, results: { 
       token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id }, 
       config.secret) ,
       fullName:user.fullName, 
@@ -51,8 +50,8 @@ exports.loginRequired = function(req, res, next) {
     next();
   } else {
     return res.status(401).send({
-      statusCode: 401, 
-      result: null,
+      success: false, 
+      results: null,
       message: 'Unauthorized user!'
     });
   }
