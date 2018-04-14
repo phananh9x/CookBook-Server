@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose    = require('mongoose');
 var jwt    = require('jsonwebtoken'); 
 var config = require('./config'); 
+var cors = require('cors')
 
 
 var User   = require('./models/userModel'); 
@@ -21,6 +22,7 @@ var food = require('./routes/foods');
 var image = require('./routes/image');
 
 var app = express();
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
