@@ -27,7 +27,8 @@ exports.create = function(req, res) {
 };
 
 exports.update = function(req, res) {
-  Food.findOneAndUpdate({_id : req.params.foodId}, req.body, function (err, data) {
+  console.log(req.body)
+  Food.findOneAndUpdate({_id : req.params.foodId}, req.body, {new: true}, function (err, data) {
     if (err) 
       return res.status(400).send({
         success: false, 
@@ -38,8 +39,8 @@ exports.update = function(req, res) {
   });
 };
 
-exports.detele = function(req, res) {
-  Food.findOneAndDelete({_id : req.params.foodId}, function (err, data) {
+exports.delete = function(req, res) {
+  Food.findByIdAndRemove({_id : req.params.foodId}, function (err, data) {
     if (err) 
       return res.status(400).send({
         success: false, 

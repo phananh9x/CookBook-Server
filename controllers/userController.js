@@ -45,6 +45,33 @@ exports.sign_in = function(req, res) {
   });
 };
 
+exports.update = function(req, res) {
+  User.findOneAndUpdate({_id : req.params.userId}, req.body, {new: true}, function (err, data) {
+    if (err) 
+      return res.status(400).send({
+        success: false, 
+        results: null,
+        message: err
+      });
+    return res.send({success: true, results: data});
+  });
+};
+
+
+exports.delete = function(req, res) {
+  User.findByIdAndRemove({_id : req.params.userId}, function (err, data) {
+    if (err) 
+      return res.status(400).send({
+        success: false, 
+        results: null,
+        message: err
+      });
+    return res.send({success: true, results: data});
+  });
+};
+
+
+
 exports.loginRequired = function(req, res, next) {
   if (req.user) {
     next();
@@ -56,3 +83,4 @@ exports.loginRequired = function(req, res, next) {
     });
   }
 };
+

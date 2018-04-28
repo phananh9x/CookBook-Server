@@ -28,3 +28,30 @@ exports.create = function(req, res) {
     }
   });
 };
+
+
+exports.update = function(req, res) {
+  Category.findOneAndUpdate({_id : req.params.categoryId}, req.body, {new: true}, function (err, data) {
+    if (err) 
+      return res.status(400).send({
+        success: false, 
+        results: null,
+        message: err
+      });
+    return res.send({success: true, results: data});
+  });
+};
+
+
+exports.delete = function(req, res) {
+  Category.findByIdAndRemove({_id : req.params.categoryId}, function (err, data) {
+    if (err) 
+      return res.status(400).send({
+        success: false, 
+        results: null,
+        message: err
+      });
+    return res.send({success: true, results: data});
+  });
+};
+

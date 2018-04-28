@@ -49,10 +49,8 @@ var FoodSchema = new Schema({
       }
   	}
   ,
-  favourite: {
-  	type : Number,
-  	default: 0
-  },
+  favourite: []
+  ,
   created: {
     type: Date,
     default: Date.now
