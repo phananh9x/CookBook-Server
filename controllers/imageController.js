@@ -14,8 +14,10 @@ exports.get = function(req, res, next) {
 };
 
 exports.create = function(req, res, next) {
-  	var img = new Image (req.files[0]);
-	console.log(req.files, 'files');
+	var path = "images/uploads/";
+  	var img = new Image(req.files[0]);
+  	img.path = path + img.filename;
+	console.log(img);
 	img.save(function(err, data) {
     if (err) 
     	return res.status(400).send({
