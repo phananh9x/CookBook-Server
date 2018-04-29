@@ -30,6 +30,9 @@ var UserSchema = new Schema({
   phone: {
     type: String  
   },
+  address: {
+    type: String
+  },
   created: {
     type: Date,
     default: Date.now
