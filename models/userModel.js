@@ -23,6 +23,13 @@ var UserSchema = new Schema({
   hash_password: {
     type: String
   },
+  gender: Boolean,
+  birthday: {
+    type: Date
+  },
+  phone: {
+    type: String  
+  },
   created: {
     type: Date,
     default: Date.now
