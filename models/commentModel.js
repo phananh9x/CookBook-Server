@@ -6,16 +6,13 @@ var mongoose = require('mongoose'),
  */
 var CommentSchema = new Schema({
   username: {
-    type: String,
-    unique: true,
+    type: String
   },
   foodId: {
-  	type : Schema.Types.ObjectId, ref : 'Food',
-    unique: true
+  	type : Schema.Types.ObjectId, ref : 'Food'
   },
   content: {
-    type: String,
-    unique: true,
+    type: String
   },
   created: {
     type: Date,
