@@ -26,3 +26,15 @@ exports.create = function(req, res) {
     return res.send({success: true, results: comment});
   });
 };
+
+exports.update = function(req, res) {
+   Comment.findOneAndUpdate({_id : req.params.foodId}, req.body, {new: true}, function (err, data) {
+    if (err) 
+      return res.status(400).send({
+        success: false, 
+        results: null,
+        message: err
+      });
+    return res.send({success: true, results: data});
+  });
+};
