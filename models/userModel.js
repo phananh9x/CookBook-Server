@@ -13,6 +13,9 @@ var UserSchema = new Schema({
     trim: true,
     required: true
   },
+  image: {
+    type: String
+  },
   email: {
     type: String,
     unique: true,
