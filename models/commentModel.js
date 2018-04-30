@@ -23,4 +23,4 @@ var CommentSchema = new Schema({
   }
 });
 
-mongoose.model('Comment', FoodSchema);
+mongoose.model('Comment', CommentSchema);
