@@ -14,6 +14,9 @@ var CommentSchema = new Schema({
   content: {
     type: String
   },
+  image: {
+    type: String
+  },
   created: {
     type: Date,
     default: Date.now
