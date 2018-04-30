@@ -14,6 +14,7 @@ exports.get = function(req, res) {
 };
 
 exports.create = function(req, res) {
+  req.body.foodId =  req.params.foodId;
   var newComment = new Comment(req.body);
   newComment.save(function(err, comment) {
     if (err)
