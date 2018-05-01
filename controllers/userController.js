@@ -37,11 +37,15 @@ exports.sign_in = function(req, res) {
       });
     }
     return res.send({success: true, results: {
-      token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id, phone: user.phone, address: user.address }, 
+      token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id, phone: user.phone, address: user.address, gender:user.gender,birthday:user.birthday },
       config.secret) ,
       fullName:user.fullName,
       _id: user._id,
-      email: user.email}});
+      email: user.email,
+			phone: user.phone,
+			address: user.address,
+			gender: user.gender,
+			birthday: user.birthday}});
   });
 };
 
