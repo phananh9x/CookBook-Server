@@ -26,6 +26,9 @@ var FoodSchema = new Schema({
   time: {
     type : String
   },
+  createBy: {
+    type : Schema.Types.ObjectId, ref : 'User'
+  },
   materials: {
       type : Array,
       material : {
