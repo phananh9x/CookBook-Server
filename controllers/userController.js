@@ -20,7 +20,7 @@ exports.register = function(req, res) {
 };
 
 exports.get = function(req, res) {
-  User.find({ categoryId : req.params.userId }, function(err, data) {
+  User.find({ _id : req.params.userId }, function(err, data) {
     if (err) 
       return res.status(400).send({
         success: false, 
