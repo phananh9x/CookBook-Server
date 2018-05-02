@@ -4,6 +4,7 @@ var router = express.Router();
 var	userHandlers = require('../controllers/userController.js');
  
 /* GET users listing. */
+router.get('/:userId/info', userHandlers.loginRequired, userHandlers.get);
 router.post('/register', userHandlers.register);
 router.post('/sign_in', userHandlers.sign_in);
 router.post('/:userId/update', userHandlers.loginRequired, userHandlers.update);

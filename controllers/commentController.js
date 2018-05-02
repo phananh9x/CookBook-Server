@@ -14,9 +14,10 @@ exports.get = function(req, res) {
 };
 
 exports.create = function(req, res) {
+  console.log(req.user.user);
   req.body.foodId =  req.params.foodId;
-  req.body.username =  req.user.email;
-  req.body.image = req.user.image;
+  req.body.username =  req.user.user.email;
+  req.body.image = req.user.user.image;
   var newComment = new Comment(req.body);
   newComment.save(function(err, comment) {
     if (err)

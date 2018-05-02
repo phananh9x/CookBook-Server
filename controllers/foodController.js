@@ -15,7 +15,7 @@ exports.get = function(req, res) {
 
 exports.create = function(req, res) {
   console.log(req.user);
-  req.body.createBy = req.user._id;
+  req.body.createBy = req.user.user._id;
   var newFood = new Food(req.body);
   newFood.save(function(err, food) {
     if (err)

@@ -19,6 +19,18 @@ exports.register = function(req, res) {
   });
 };
 
+exports.get = function(req, res) {
+  User.find({ categoryId : req.params.userId }, function(err, data) {
+    if (err) 
+      return res.status(400).send({
+        success: false, 
+        results: null,
+        message: err
+      });
+    return res.send({success: true, results: data});
+  });
+};
+
 exports.sign_in = function(req, res) {
   User.findOne({
     email: req.body.email
@@ -37,7 +49,7 @@ exports.sign_in = function(req, res) {
       });
     }
     return res.send({success: true, results: {
-      token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id, phone: user.phone, address: user.address, gender:user.gender,birthday:user.birthday },
+      token: jwt.sign({ user },
       config.secret) ,
       fullName:user.fullName,
       _id: user._id,
@@ -45,7 +57,8 @@ exports.sign_in = function(req, res) {
 			phone: user.phone,
 			address: user.address,
 			gender: user.gender,
-			birthday: user.birthday}});
+			birthday: user.birthday,
+      image: user.image}});
   });
 };
 
