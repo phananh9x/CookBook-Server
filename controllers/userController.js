@@ -6,7 +6,11 @@ var mongoose = require('mongoose'),
 
 exports.register = function(req, res) {
   if (!req.body.image) {
-    req.body.image = config.avatarDefault;
+    if (req.body.gender == "true") {
+      req.body.image = config.avatarDefaultMale;
+    }else {
+      req.body.image = config.avatarDefaultFeMale;
+    }
   }
   var newUser = new User(req.body);
 
