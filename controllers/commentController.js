@@ -16,6 +16,7 @@ exports.get = function(req, res) {
 exports.create = function(req, res) {
   req.body.foodId =  req.params.foodId;
   req.body.username =  req.user.email;
+  req.body.image = req.user.image;
   var newComment = new Comment(req.body);
   newComment.save(function(err, comment) {
     if (err)
