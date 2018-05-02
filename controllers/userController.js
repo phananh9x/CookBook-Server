@@ -20,15 +20,24 @@ exports.register = function(req, res) {
 };
 
 exports.get = function(req, res) {
-  User.find({ _id : req.params.userId }, function(err, data) {
-    if (err) 
-      return res.status(400).send({
-        success: false, 
-        results: null,
-        message: err
-      });
-    return res.send({success: true, results: data});
-  });
+  if(req.params.userId == req.user.user._id) {
+    User.find({ _id : req.params.userId }, function(err, data) {
+      if (err) 
+        return res.status(400).send({
+          success: false, 
+          results: null,
+          message: err
+        });
+      return res.send({success: true, results: data});
+    });
+  }else {
+    return res.status(500).send({
+      success: false,
+      results: null,
+      message: 'Unauthorized user!'
+    });
+  }
+  
 };
 
 exports.sign_in = function(req, res) {
