@@ -23,13 +23,13 @@ exports.register = function(req, res) {
         message: err
       });
     user.hash_password = undefined;
+    console.log(user)
     return res.send({success: true, results: user});
   });
 };
 
 exports.get = function(req, res) {
-  if(req.params.userId == req.user.user._id) {
-    User.find({ _id : req.params.userId }, function(err, data) {
+    User.find({ _id : req.user.user._id }, function(err, data) {
       if (err) 
         return res.status(400).send({
           success: false, 
@@ -38,14 +38,6 @@ exports.get = function(req, res) {
         });
       return res.send({success: true, results: data});
     });
-  }else {
-    return res.status(500).send({
-      success: false,
-      results: null,
-      message: 'Unauthorized user!'
-    });
-  }
-  
 };
 
 exports.sign_in = function(req, res) {
@@ -80,7 +72,7 @@ exports.sign_in = function(req, res) {
 };
 
 exports.update = function(req, res) {
-  User.findOneAndUpdate({_id : req.params.userId}, req.body, {new: true}, function (err, data) {
+  User.findOneAndUpdate({_id : req.user.user._id }, req.body, {new: true}, function (err, data) {
     if (err)
       return res.status(400).send({
         success: false,
